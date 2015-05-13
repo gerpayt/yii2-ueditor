@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\widgets\InputWidget;
+use gerpayt\yii2_ueditor\UEditorAsset;
 
 class UEditorWidget extends InputWidget
 {
@@ -35,7 +36,7 @@ class UEditorWidget extends InputWidget
         } elseif ($this->hasModel()) {
             $value = BaseHtml::getAttributeValue($this->model, $this->attribute);
         } else {
-            $value = $this->hasModel() ? $this->model[$this->attribute] : $this->value;
+            $value = $this->value;
         }
 
         echo Html::beginTag('script', ['id'=>$id, 'type'=>'text/plain', 'name' => $name, 'style' => "height:{$this->height}"]);
@@ -47,6 +48,9 @@ class UEditorWidget extends InputWidget
         ];
         $config = Json::encode($ueditorConfig);
 
-        $this->view->registerJs("var ue = UE.getEditor('{$id}', {$config});");
+        $view = $this->getView();
+        UEditorAsset::register($view);
+        $view->registerJs("var ue = UE.getEditor('{$id}', {$config});");
     }
+
 }

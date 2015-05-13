@@ -1,5 +1,7 @@
 <?php
 namespace gerpayt\yii2_ueditor;
+use Yii;
+
 /**
  * Created by JetBrains PhpStorm.
  * User: taoqili
@@ -262,7 +264,7 @@ class UEditorUploader
     {
         $format = $this->config["pathFormat"];
         //替换公司ID
-        $format = str_replace("{cid}", \Yii::$app->companyUser->cid, $format);
+        $format = str_replace("{cid}", Yii::$app->companyUser->cid, $format);
 
         //替换日期事件
         $t = time();
@@ -306,7 +308,7 @@ class UEditorUploader
     private function getFilePath()
     {
         $fullname = $this->fullName;
-        $rootPath = $_SERVER['DOCUMENT_ROOT'];
+        $rootPath = Yii::$app->params['UPLOAD_BASE_PATH'];
 
         if (substr($fullname, 0, 1) != '/') {
             $fullname = '/' . $fullname;
