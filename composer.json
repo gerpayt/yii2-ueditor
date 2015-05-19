@@ -25,13 +25,13 @@
                     "url": "git://github.com/gerpayt/yii2-ueditor.git",
                     "type": "git",
                     "reference": "master"
-                },
-                "autoload": {
-                    "psr-4" : {
-                        "gerpayt\\yii2-ueditor" : ""
-                    }
                 }
             }
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "gerpayt\\yii2-ueditor" : ""
+        }
+    }
 }
