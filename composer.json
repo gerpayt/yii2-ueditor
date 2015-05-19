@@ -31,7 +31,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "gerpayt\\yii2-ueditor\\" : ""
+            "gerpayt\\yii2_ueditor\\" : ""
         }
     }
 }
