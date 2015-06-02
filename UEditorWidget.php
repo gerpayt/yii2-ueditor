@@ -2,6 +2,7 @@
 
 namespace gerpayt\yii2_ueditor;
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\BaseHtml;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -11,7 +12,7 @@ use gerpayt\yii2_ueditor\UEditorAsset;
 
 class UEditorWidget extends InputWidget
 {
-    public $height;
+    public $height = 300;
 
     public function run()
     {
@@ -43,9 +44,16 @@ class UEditorWidget extends InputWidget
         echo $value;
         echo Html::endTag('script');
 
-        $ueditorConfig = [
-            'serverUrl' => Url::to(['ueditor/controller']),
-        ];
+        if(!isset($options['config'])) {
+            $options['config'] = [];
+        }
+
+        $ueditorConfig = ArrayHelper::merge(
+            [
+                'serverUrl' => Url::to(['ueditor/controller']),
+            ],
+            $options['config']
+        );
         $config = Json::encode($ueditorConfig);
 
         $view = $this->getView();
