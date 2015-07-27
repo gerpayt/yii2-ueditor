@@ -209,7 +209,7 @@ class UEditorController extends Controller
         //替换公司ID
         $path = str_replace("{cid}", Yii::$app->companyUser->cid, $path);
 
-        $path = Yii::$app->params['UPLOAD_BASE_PATH'].'/'. (substr($path, 0, 1) == "/" ? "":"/") . $path;
+        $path = Yii::getAlias('@upload/').(substr($path, 0, 1) == "/" ? "":"/") . $path;
         $files = self::getFiles($path, $allowFiles);
         if (!count($files)) {
             return [

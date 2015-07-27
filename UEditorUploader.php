@@ -308,7 +308,7 @@ class UEditorUploader
     private function getFilePath()
     {
         $fullname = $this->fullName;
-        $rootPath = Yii::$app->params['UPLOAD_BASE_PATH'];
+        $rootPath = Yii::getAlias('@upload/');
 
         if (substr($fullname, 0, 1) != '/') {
             $fullname = '/' . $fullname;
